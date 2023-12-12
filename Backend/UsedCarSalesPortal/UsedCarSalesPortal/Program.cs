@@ -1,16 +1,28 @@
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.EntityFrameworkCore;
+using Serilog;
+using UsedCarSalesPortal.DatabaseContext;
 
-// Add services to the container.
+var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+builder.Services.AddDbContext<ApplicationDBContext>(options =>
+{
+    options.UseSqlServer
+    (builder.Configuration.GetConnectionString("Default"));
+}, ServiceLifetime.Scoped);
+
+builder.Host.UseSerilog((HostBuilderContext context, IServiceProvider services, LoggerConfiguration loggerConfiguration) =>
+{
+    loggerConfiguration.ReadFrom.Configuration(context.Configuration)
+    .ReadFrom.Services(services);
+});
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+//app.UseHttpsRedirection();
 
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
+//app.UseAuthorization();
 
 app.MapControllers();
 
