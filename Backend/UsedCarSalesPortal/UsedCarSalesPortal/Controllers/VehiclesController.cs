@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UsedCarSalesPortal.DatabaseContext;
 using UsedCarSalesPortal.Model;
+using UsedCarSalesPortal.Services;
 
 namespace UsedCarSalesPortal.Controllers
 {
@@ -15,10 +16,12 @@ namespace UsedCarSalesPortal.Controllers
     public class VehiclesController : ControllerBase
     {
         private readonly ApplicationDBContext _context;
+        private readonly VehicleService _vehicleService;
 
-        public VehiclesController(ApplicationDBContext context)
+        public VehiclesController(ApplicationDBContext context, VehicleService vehicleService)
         {
             _context = context;
+            _vehicleService = vehicleService;
         }
 
         // GET: api/Vehicles
@@ -30,6 +33,12 @@ namespace UsedCarSalesPortal.Controllers
               return NotFound();
           }
             return await _context.Vehicles.ToListAsync();
+        }
+
+        [HttpGet("FeaturedVehicles")]
+        public List<Vehicles>? GetFeaturedVehicles()
+        {
+            return _vehicleService.GetFeaturedVehicles();
         }
 
         // GET: api/Vehicles/5

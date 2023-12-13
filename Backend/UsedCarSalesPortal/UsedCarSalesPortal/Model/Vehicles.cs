@@ -40,5 +40,12 @@ namespace UsedCarSalesPortal.Model
         [Required]
         [StringLength(50)]
         public string? VehicleImage { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public String? SellerName;
+
+        [Required]
+        public int? DistanceTravelled { get;set; }
     }
 }

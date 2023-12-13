@@ -2,16 +2,16 @@ import React from 'react';
 import Navbar from './Navbar';
 import 'tailwindcss/tailwind.css';
 import Footer from './Footer';
-import FeaturedVehicle from './FeaturedVehicle';
+import SellCarForm from './SellCarForm';
 
-const Home = () => {
+const SellCar = () => {
   return (
     <>
       <Navbar />
-      <FeaturedVehicle />
+      <SellCarForm />
       <Footer />
     </>
   );
 };
 
-export default Home;
+export default SellCar;
