@@ -17,9 +17,11 @@ const Navbar = () => {
       </div>
 
       <div className="flex items-center space-x-4">
-        <button className="text-white hover:text-gray-300 hover:bg-orange-600 transition duration-300 p-3">
-          View All Vehicles
-        </button>
+        <Link to="/viewCars">
+          <button className="text-white hover:text-gray-300 hover:bg-orange-600 transition duration-300 p-3">
+            View All Vehicles
+          </button>
+        </Link>
         <button className="text-white hover:text-gray-300 hover:bg-orange-600 transition duration-300 p-3">
           New Arrivals
         </button>

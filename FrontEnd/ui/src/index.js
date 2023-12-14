@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import 'tailwindcss/tailwind.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import SellCar from './Components/SellCar';
+import ViewAllCars from './Components/ViewAllCars';
 
 const appRouter = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/sellcar',
     element: <SellCar />,
+  },
+  {
+    path: '/viewCars',
+    element: <ViewAllCars />,
   },
 ]);
 
