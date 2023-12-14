@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const VehicleCards = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -49,24 +50,31 @@ const VehicleCards = () => {
             key={vehicle.vehicleId}
             className="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 p-4"
           >
-            <div className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
-              <img
-                src={`../images/${vehicle.vehicleImage}`}
-                alt={vehicle.vehicleName}
-                className="w-full h-32 object-cover mb-4"
-              />
-              <div className="text-white">
-                <p className="text-lg font-semibold">{vehicle.vehicleName}</p>
-                <p className="text-sm">
-                  {getModelName(vehicle.vehicleModelId)}
-                </p>
-                <p className="text-sm">{getTypeName(vehicle.vehicleTypeId)}</p>
-                <p className="text-sm">
-                  Distance Travelled: {vehicle.distanceTravelled} Kms
-                </p>
-                <p className="text-sm">Price: ${vehicle.price}</p>
+            <Link
+              to={`/VehicleDetails/${vehicle.vehicleId}/${vehicle.vehicleModelId}/${vehicle.vehicleTypeId}`}
+            >
+              <div className="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+                <img
+                  src={`./images/${vehicle.vehicleImage}`}
+                  alt={vehicle.vehicleName}
+                  className="w-full h-32 object-cover mb-4"
+                />
+                <div className="text-white">
+                  <h1>{vehicle.vehicleName}</h1>
+                  <p className="text-sm">
+                    {' '}
+                    Belongs to : {getModelName(vehicle.vehicleModelId)}
+                  </p>
+                  <p className="text-sm">
+                    Uses : {getTypeName(vehicle.vehicleTypeId)}
+                  </p>
+                  <p className="text-sm">
+                    Distance Travelled: {vehicle.distanceTravelled} Kms
+                  </p>
+                  <p className="text-sm">Price: ${vehicle.price}</p>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         ))}
       </div>

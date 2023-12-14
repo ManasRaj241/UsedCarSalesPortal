@@ -1,7 +1,4 @@
 import React from 'react';
-import playStoreImage from '../images/play-store.png';
-import appStoreImage from '../images/app-store.png';
-import logoImage from '../images/logo.png';
 
 const Footer = () => {
   const imgAlt = 'Image Alt Text';
@@ -18,12 +15,24 @@ const Footer = () => {
               Download App for Android and iOS mobile phone.
             </p>
             <div className="flex mt-4">
-              <img className="w-16 mr-4" src={playStoreImage} alt={imgAlt} />
-              <img className="w-16" src={appStoreImage} alt={imgAlt} />
+              <img
+                className="w-16 mr-4"
+                src={`../images/play-store.png`}
+                alt={imgAlt}
+              />
+              <img
+                className="w-16"
+                src={`../images/app-store.png`}
+                alt={imgAlt}
+              />
             </div>
           </div>
           <div className="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
-            <img className="w-32 mb-4 mx-auto" src={logoImage} alt={imgAlt} />
+            <img
+              className="w-32 mb-4 mx-auto"
+              src={`../images/logo.png`}
+              alt={imgAlt}
+            />
             <p className="text-gray-500 text-center">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Assumenda, maiores exercitationem fugit nemo placeat
