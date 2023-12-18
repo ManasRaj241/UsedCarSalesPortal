@@ -6,6 +6,7 @@ import ViewAllCars from "./components/ViewAllCars";
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import SellCar from "./components/SellCar";
 import VehicleDetails from "./components/VehicleDetails";
+import CouponDetails from "./components/CouponDetails";
 
 const appRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const appRouter = createBrowserRouter([
   {
     path: '/vehicledetails/:vehicleId/:vehicleModelId/:vehicleTypeId',
     element: <VehicleDetails />,
+  },
+  {
+    path: '/coupons',
+    element: <CouponDetails />,
   },
 ])
 

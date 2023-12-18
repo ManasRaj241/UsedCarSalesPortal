@@ -4,7 +4,7 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const deps = require('./package.json').dependencies;
 module.exports = (_, argv) => ({
   output: {
-    publicPath: 'http://localhost:8080/',
+    publicPath: 'http://localhost:3001/',
   },
 
   resolve: {
@@ -12,7 +12,7 @@ module.exports = (_, argv) => ({
   },
 
   devServer: {
-    port: 8080,
+    port: 3001,
     historyApiFallback: true,
   },
 
@@ -41,13 +41,12 @@ module.exports = (_, argv) => ({
 
   plugins: [
     new ModuleFederationPlugin({
-      name: 'main_application',
+      name: 'Coupon_MFE',
       filename: 'remoteEntry.js',
-      remotes: {
-        sell_mfe: 'sell_mfe@http://localhost:3000/remoteEntry.js',
-        Coupon_MFE: 'Coupon_MFE@http://localhost:3001/remoteEntry.js',
+      remotes: {},
+      exposes: {
+        './CouponTable': './src/Components/CouponTable.jsx',
       },
-      exposes: {},
       shared: {
         ...deps,
         react: {
