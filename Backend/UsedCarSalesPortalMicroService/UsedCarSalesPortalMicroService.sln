@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{65972425-0DB3-480D-A285-357261959528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCSP.Services.CouponAPI", "UCSP.Services.CouponAPI\UCSP.Services.CouponAPI.csproj", "{A0254E41-A1D9-4542-836C-8733C20EAB00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UCSP.Services.CouponAPI", "UCSP.Services.CouponAPI\UCSP.Services.CouponAPI.csproj", "{A0254E41-A1D9-4542-836C-8733C20EAB00}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UCSP.Services.AuthAPI", "UCSP.Services.AuthAPI\UCSP.Services.AuthAPI.csproj", "{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,12 +23,17 @@ Global
 		{A0254E41-A1D9-4542-836C-8733C20EAB00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0254E41-A1D9-4542-836C-8733C20EAB00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0254E41-A1D9-4542-836C-8733C20EAB00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{A0254E41-A1D9-4542-836C-8733C20EAB00} = {65972425-0DB3-480D-A285-357261959528}
+		{3690CC7C-5A30-4FBA-8D9A-6030EFE6AA83} = {65972425-0DB3-480D-A285-357261959528}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0C1D1362-BD74-4B1F-82A0-8F31D27C31D6}
