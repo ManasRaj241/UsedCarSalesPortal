@@ -4,7 +4,7 @@
 
 #pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
 
-namespace UCSP.Services.CouponAPI.Migrations
+namespace UCSP.Services.CartAPI.Migrations
 {
     /// <inheritdoc />
     public partial class keyGeneration : Migration

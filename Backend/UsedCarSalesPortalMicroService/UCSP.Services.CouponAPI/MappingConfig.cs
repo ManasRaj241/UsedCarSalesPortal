@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
-using UCSP.Services.CouponAPI.Models;
-using UCSP.Services.CouponAPI.Models.Dto;
+using UCSP.Services.CartAPI.Models;
+using UCSP.Services.CartAPI.Models.Dto;
 
-namespace UCSP.Services.CouponAPI
+namespace UCSP.Services.CartAPI
 {
     public class MappingConfig
     {

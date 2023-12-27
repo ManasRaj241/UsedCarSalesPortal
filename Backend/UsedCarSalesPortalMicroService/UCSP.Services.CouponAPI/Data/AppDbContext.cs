@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UCSP.Services.CouponAPI.Models;
+using UCSP.Services.CartAPI.Models;
 
-namespace UCSP.Services.CouponAPI.Data
+namespace UCSP.Services.CartAPI.Data
 {
     public class AppDbContext : DbContext
     {

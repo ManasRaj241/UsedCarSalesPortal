@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace UCSP.Services.CouponAPI.Models
+namespace UCSP.Services.CartAPI.Models
 {
     public class Coupon
     {

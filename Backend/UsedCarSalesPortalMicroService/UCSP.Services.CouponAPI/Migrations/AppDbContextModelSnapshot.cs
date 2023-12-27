@@ -3,11 +3,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UCSP.Services.CouponAPI.Data;
+using UCSP.Services.CartAPI.Data;
 
 #nullable disable
 
-namespace UCSP.Services.CouponAPI.Migrations
+namespace UCSP.Services.CartAPI.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     partial class AppDbContextModelSnapshot : ModelSnapshot

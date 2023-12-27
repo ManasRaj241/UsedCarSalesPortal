@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UCSP.Services.AuthAPI.Models.Dto;
 using UCSP.Services.AuthAPI.Service.IService;
@@ -33,6 +34,7 @@ namespace UCSP.Services.AuthAPI.Controllers
             return Ok(_response);
         }
 
+        [EnableCors("AllowAll")]
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginRequestDto model)
         {

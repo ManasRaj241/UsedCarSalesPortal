@@ -46,6 +46,8 @@ module.exports = (_, argv) => ({
       remotes: {
         sell_mfe: 'sell_mfe@http://localhost:3000/remoteEntry.js',
         Coupon_MFE: 'Coupon_MFE@http://localhost:3001/remoteEntry.js',
+        login_mfe: 'login_mfe@http://localhost:3002/remoteEntry.js',
+        cart_MFE: 'cart_MFE@http://localhost:3003/remoteEntry.js',
       },
       exposes: {},
       shared: {

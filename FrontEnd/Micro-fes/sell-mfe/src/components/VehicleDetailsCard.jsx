@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
+import Cookies from 'js-cookie';
 
 const VehicleDetailsCard = (props) => {
   const [vehicleDetails, setVehicleDetails] = useState({});
   const [typeDetails, setTypeDetails] = useState({});
   const [modelDetails, setModelDetails] = useState({});
+  const [couponCode, setCouponCode] = useState('');
+  const [decodedPayload, setDecodedPayload] = useState(null);
+  const [sub, setSub] = useState('');
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,7 +19,6 @@ const VehicleDetailsCard = (props) => {
           `https://localhost:7206/api/Vehicles/${props.vehicleId}`
         );
         const vehicleData = await vehicleResponse.json();
-        console.log(vehicleData);
         setVehicleDetails(vehicleData);
 
         const typeResponse = await fetch(
@@ -35,6 +39,75 @@ const VehicleDetailsCard = (props) => {
 
     fetchData();
   }, [props.vehicleId]);
+
+  useEffect(() => {
+    const token = Cookies.get('token');
+    if (token) {
+      try {
+        const [, payloadBase64] = token.split('.');
+        const normalizedPayloadBase64 = payloadBase64
+          .replace(/-/g, '+')
+          .replace(/_/g, '/');
+        const decodedPayloadString = atob(normalizedPayloadBase64);
+        const decodedPayloadObject = JSON.parse(decodedPayloadString);
+        setDecodedPayload(decodedPayloadObject);
+        setSub(decodedPayloadObject.sub);
+      } catch (error) {
+        console.error('Error decoding JWT token:', error.message);
+      }
+    }
+  }, []);
+
+  const handleAddToCart = async () => {
+    try {
+      const cartHeader = {
+        cartHeaderId: 0,
+        userId: sub,
+        couponCode: couponCode,
+        discount: 0,
+        cartTotal: vehicleDetails.price,
+      };
+
+      const cartDetails = [
+        {
+          cartDetailsId: 0,
+          cartHeaderId: 0,
+          productId: props.vehicleId,
+          count: 1,
+        },
+      ];
+
+      let apiUrl = 'https://localhost:7114/api/cart/Cartupsert';
+      await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ cartHeader, cartDetails }),
+      });
+
+      setIsAddedToCart(true);
+
+      if (couponCode) {
+        apiUrl = 'https://localhost:7114/api/cart/ApplyCoupon';
+        await fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ cartHeader, cartDetails }),
+        });
+      }
+    } catch (error) {
+      console.error('Error adding to cart:', error);
+      setIsError(true);
+    }
+  };
+
+  const closePopup = () => {
+    setIsAddedToCart(false);
+    setIsError(false);
+  };
 
   return (
     <div className="bg-gray-800">
@@ -88,13 +161,60 @@ const VehicleDetailsCard = (props) => {
             essay on cars, let us check out some of the important features and
             benefits of a car in our day-to-day lives.{' '}
           </p>
-          <Link to="/">
-            <button className="bg-orange-500 hover:bg-red-500 text-white font-bold py-2 px-4 rounded mt-4 ml-4">
-              Add To Cart
-            </button>
-          </Link>
+          <div className="mt-6">
+            <input
+              type="text"
+              placeholder="Enter the Coupon code"
+              value={couponCode}
+              onChange={(e) => setCouponCode(e.target.value)}
+              className="bg-gray-700 p-2 rounded text-white"
+            />
+            <Link to={`/Cart/${sub}`}>
+              <button
+                className={`${
+                  isAddedToCart
+                    ? 'bg-gray-500'
+                    : 'bg-green-600 hover:bg-red-500'
+                } text-white font-bold py-2 px-4 rounded mt-4 ml-4`}
+                onClick={handleAddToCart}
+                disabled={isAddedToCart}
+              >
+                {isAddedToCart ? 'Added' : 'Add To Cart'}
+              </button>
+            </Link>
+          </div>
         </div>
       </div>
+      {isAddedToCart && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <p className="text-green-600 font-semibold">
+              Item Added to the Cart
+            </p>
+            <button
+              onClick={closePopup}
+              className="mt-4 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
+      {isError && (
+        <div className="fixed inset-0 flex items-center justify-center bg-gray-800 bg-opacity-75">
+          <div className="bg-white p-6 rounded shadow-lg">
+            <p className="text-red-600 font-semibold">
+              Error while adding to the Cart
+            </p>
+            <button
+              onClick={closePopup}
+              className="mt-4 bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

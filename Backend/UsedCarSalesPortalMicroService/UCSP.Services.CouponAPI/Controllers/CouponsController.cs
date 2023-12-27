@@ -2,24 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using UCSP.Services.CouponAPI.Data;
-using UCSP.Services.CouponAPI.Models;
-using UCSP.Services.CouponAPI.Models.Dto;
+using UCSP.Services.CartAPI.Data;
+using UCSP.Services.CartAPI.Models;
+using UCSP.Services.CartAPI.Models.Dto;
 
-namespace UCSP.Services.CouponAPI.Controllers
+namespace UCSP.Services.CartAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class CouponsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        private ResponseDto _response;
+        private IMapper _mapper;
 
-        public CouponsController(AppDbContext context)
+        public CouponsController(IMapper mapper, AppDbContext context)
         {
+            this._response = new ResponseDto();
             _context = context;
+            _mapper = mapper;
         }
 
         // GET: api/Coupons
@@ -115,6 +121,23 @@ namespace UCSP.Services.CouponAPI.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet]
+        [Route("GetByCode/{code}")]
+        public ResponseDto GetByCode(string code)
+        {
+            try
+            {
+                Coupon obj = _context.Coupons.First(u => u.CouponCode.ToLower() == code.ToLower());
+                _response.Result = _mapper.Map<CouponDto>(obj);
+            }
+            catch (Exception ex)
+            {
+                _response.IsSuccess = false;
+                _response.Message = ex.Message;
+            }
+            return _response;
         }
 
         private bool CouponExists(int id)
