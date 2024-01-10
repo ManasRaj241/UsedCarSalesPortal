@@ -242,7 +242,7 @@ const SellCarForm = () => {
           <p className="text-green-500 text-2xl font-semibold mb-4">
             Your Car has been posted for sale
           </p>
-          <Link to="/">
+          <Link to="/Home">
             <button
               className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 focus:outline-none focus:ring focus:border-blue-300"
               onClick={closeSuccessPopup}
