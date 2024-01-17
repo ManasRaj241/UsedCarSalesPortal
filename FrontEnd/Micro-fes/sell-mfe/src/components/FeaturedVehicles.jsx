@@ -7,9 +7,7 @@ const FeaturedVehicles = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch(
-          'https://localhost:7206/api/Vehicles/FeaturedVehicles'
-        );
+        const response = await fetch('https://localhost:7009/FeaturedVehicles');
         const data = await response.json();
         setVehicles(data);
         console.log(data);

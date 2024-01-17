@@ -15,6 +15,7 @@ namespace UCSP.Services.CartAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class CouponsController : ControllerBase
     {
         private readonly AppDbContext _context;

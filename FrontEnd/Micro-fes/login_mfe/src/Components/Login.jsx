@@ -30,7 +30,7 @@ export default function Login() {
       password: loginState.password,
     };
     console.log(JSON.stringify(postData));
-    const response = await fetch('https://localhost:7002/api/auth/Login', {
+    const response = await fetch('https://localhost:7009/Login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

@@ -16,19 +16,19 @@ const VehicleDetailsCard = (props) => {
     const fetchData = async () => {
       try {
         const vehicleResponse = await fetch(
-          `https://localhost:7206/api/Vehicles/${props.vehicleId}`
+          `https://localhost:7009/Vehicles/${props.vehicleId}`
         );
         const vehicleData = await vehicleResponse.json();
         setVehicleDetails(vehicleData);
 
         const typeResponse = await fetch(
-          `https://localhost:7206/api/VehicleTypes/${vehicleData.vehicleTypeId}`
+          `https://localhost:7009/VehicleTypes/${vehicleData.vehicleTypeId}`
         );
         const typeData = await typeResponse.json();
         setTypeDetails(typeData);
 
         const modelResponse = await fetch(
-          `https://localhost:7206/api/VehicleModels/${vehicleData.vehicleModelId}`
+          `https://localhost:7009/VehicleModels/${vehicleData.vehicleModelId}`
         );
         const modelData = await modelResponse.json();
         setModelDetails(modelData);
@@ -77,7 +77,7 @@ const VehicleDetailsCard = (props) => {
         },
       ];
 
-      let apiUrl = 'https://localhost:7114/api/cart/Cartupsert';
+      let apiUrl = 'https://localhost:7009/cart/Cartupsert';
       await fetch(apiUrl, {
         method: 'POST',
         headers: {
@@ -89,7 +89,7 @@ const VehicleDetailsCard = (props) => {
       setIsAddedToCart(true);
 
       if (couponCode) {
-        apiUrl = 'https://localhost:7114/api/cart/ApplyCoupon';
+        apiUrl = 'https://localhost:7009/cart/ApplyCoupon';
         await fetch(apiUrl, {
           method: 'POST',
           headers: {

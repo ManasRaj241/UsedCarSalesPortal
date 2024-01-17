@@ -31,31 +31,25 @@ export default function Signup() {
     };
     console.log('PostData ' + postData);
     try {
-      const registerResponse = await fetch(
-        'https://localhost:7002/api/auth/Register',
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(postData),
-        }
-      );
+      const registerResponse = await fetch('https://localhost:7009/Register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(postData),
+      });
       const data = await registerResponse.json();
       console.log(data);
       if (registerResponse.ok) {
         console.log('Account created successfully');
         setErrorMessage('Account Created Successfully');
-        const assignRoleResponse = await fetch(
-          'https://localhost:7002/api/auth/AssignRole',
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(postData),
-          }
-        );
+        const assignRoleResponse = await fetch('https://localhost:7009/Role', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(postData),
+        });
 
         const dataa = await assignRoleResponse.json();
         console.log(dataa);

@@ -25,7 +25,7 @@ builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(builder =>
     {
-        builder.WithOrigins("http://localhost:3001", "http://localhost:8080","http://localhost:3000", "http://localhost:3003")
+        builder.WithOrigins("http://localhost:3001", "http://localhost:8080","http://localhost:3000", "http://localhost:3003", "http://localhost:7009")
         .AllowAnyHeader()
         .AllowAnyMethod(); ;
     });
@@ -33,14 +33,16 @@ builder.Services.AddCors(options =>
 
 IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICouponService, CouponService>();
 builder.Services.AddScoped<IMessageBus, MessageBus>();
+builder.Services.AddTransient<PassingToken>();
 builder.Services.AddHttpClient("Product", u => u.BaseAddress =
 new Uri(builder.Configuration["ServiceUrls:ProductAPI"]));
 builder.Services.AddHttpClient("Coupon", u => u.BaseAddress =
-new Uri(builder.Configuration["ServiceUrls:CouponAPI"]));
+new Uri(builder.Configuration["ServiceUrls:CouponAPI"])).AddHttpMessageHandler<PassingToken>(); ;
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

@@ -15,19 +15,25 @@ const Cart = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        const token = Cookies.get('token');
         const cartResponse = await fetch(
-          `https://localhost:7114/api/cart/GetCart/${sub}`
+          `https://localhost:7009/cart/GetCart/${sub}`,
+          {
+            method: 'GET',
+            headers: {
+              Authorization: `Bearer ${token}`,
+              'Content-Type': 'application/json',
+            },
+          }
         );
         const cartData = await cartResponse.json();
         setCartData(cartData.result);
         const modelResponse = await fetch(
-          `https://localhost:7206/api/VehicleModels`
+          `https://localhost:7009/VehicleModels`
         );
         const modelData = await modelResponse.json();
         setModelDetails(modelData);
-        const typeResponse = await fetch(
-          `https://localhost:7206/api/VehicleTypes`
-        );
+        const typeResponse = await fetch(`https://localhost:7009/VehicleTypes`);
         const typeData = await typeResponse.json();
         setTypeDetails(typeData);
       } catch (error) {
@@ -79,19 +85,16 @@ const Cart = () => {
   const handleRemoveItem = async (cartDetailsId) => {
     try {
       console.log(cartDetailsId);
-      const response = await fetch(
-        `https://localhost:7114/api/cart/RemoveCart`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: cartDetailsId,
-        }
-      );
+      const response = await fetch(`https://localhost:7009/cart/RemoveCart`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: cartDetailsId,
+      });
       if (response.ok) {
         const updatedCartResponse = await fetch(
-          `https://localhost:7114/api/cart/GetCart/${sub}`
+          `https://localhost:7009/cart/GetCart/${sub}`
         );
         const updatedCartData = await updatedCartResponse.json();
         console.log(updatedCartData);
@@ -111,13 +114,8 @@ const Cart = () => {
 
   const handleBuyNow = async () => {
     try {
-      // const updatedCartHeader = {
-      //   ...cartData.cartHeader,
-      //   Email: user,
-      // };
-
       const response = await fetch(
-        `https://localhost:7114/api/cart/BuyVehicleRequest`,
+        `https://localhost:7009/cart/BuyVehicleRequest`,
         {
           method: 'POST',
           headers: {

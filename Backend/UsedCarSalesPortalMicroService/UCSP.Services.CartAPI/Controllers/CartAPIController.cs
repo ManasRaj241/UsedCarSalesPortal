@@ -22,8 +22,9 @@ namespace UCSP.Services.CartAPI.Controllers
         private readonly AppDbContext _appDbContext;
         private IProductService _productService;
         private ICouponService _couponService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public CartAPIController(IMapper mapper, IConfiguration configuration ,AppDbContext appDbContext, IProductService productService, ICouponService couponService, IMessageBus messageBus)
+        public CartAPIController(IMapper mapper, IConfiguration configuration ,AppDbContext appDbContext, IProductService productService, ICouponService couponService, IMessageBus messageBus, IHttpContextAccessor httpContextAccessor)
         {
             this._response = new ResponseDto();
             _mapper = mapper;
@@ -32,6 +33,7 @@ namespace UCSP.Services.CartAPI.Controllers
             _couponService = couponService;
             _messageBus = messageBus;
             _configuration = configuration;
+            _httpContextAccessor = httpContextAccessor ?? throw new ArgumentNullException(nameof(httpContextAccessor));
         }
 
 
@@ -40,6 +42,7 @@ namespace UCSP.Services.CartAPI.Controllers
         {
             try
             {
+                var headers = Request.Headers;
                 CartDto cart = new()
                 {
                     CartHeader = _mapper.Map<CartHeaderDto>(_appDbContext.CartHeaders.First(u => u.UserId == userId)),
@@ -51,7 +54,7 @@ namespace UCSP.Services.CartAPI.Controllers
                     item.Vehicle = productDtos.FirstOrDefault(u => u.VehicleId == item.ProductId);
                     cart.CartHeader.CartTotal += (double)item.Vehicle.Price;
                 }
-                if(!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
+                if (!string.IsNullOrEmpty(cart.CartHeader.CouponCode))
                 {
                     CouponDto coupon = await _couponService.GetCoupon(cart.CartHeader.CouponCode);
                     if(coupon != null && cart.CartHeader.CartTotal > coupon.MinAmount)

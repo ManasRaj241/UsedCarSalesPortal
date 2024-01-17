@@ -8,22 +8,16 @@ const VehicleCards = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const vehicleResponse = await fetch(
-        'https://localhost:7206/api/Vehicles'
-      );
+      const vehicleResponse = await fetch('https://localhost:7009/Vehicles');
       const vehicleData = await vehicleResponse.json();
       setVehicles(vehicleData);
 
-      const modelResponse = await fetch(
-        'https://localhost:7206/api/VehicleModels'
-      );
+      const modelResponse = await fetch('https://localhost:7009/VehicleModels');
       const modelData = await modelResponse.json();
       console.log(modelData);
       setModels(modelData);
 
-      const typeResponse = await fetch(
-        'https://localhost:7206/api/VehicleTypes'
-      );
+      const typeResponse = await fetch('https://localhost:7009/VehicleTypes');
       const typeData = await typeResponse.json();
       console.log(typeData);
       setTypes(typeData);

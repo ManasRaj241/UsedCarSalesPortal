@@ -16,7 +16,7 @@ const CouponTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://localhost:7001/api/Coupons', {
+        const response = await fetch('https://localhost:7009/Coupons', {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -34,7 +34,7 @@ const CouponTable = () => {
   const handleDelete = async (couponId) => {
     try {
       const response = await fetch(
-        `https://localhost:7001/api/Coupons/${couponId}`,
+        `https://localhost:7009/Coupons/${couponId}`,
         {
           method: 'DELETE',
           headers: {
@@ -72,7 +72,7 @@ const CouponTable = () => {
         const parsedDiscountAmount = parseInt(newCoupon.discountAmount, 10);
         const parsedMinAmount = parseInt(newCoupon.minAmount, 10);
         const response = await fetch(
-          `https://localhost:7001/api/Coupons/${selectedCoupon.couponId}`,
+          `https://localhost:7009/Coupons/${selectedCoupon.couponId}`,
           {
             method: 'PUT',
             headers: {
@@ -108,7 +108,7 @@ const CouponTable = () => {
         const parsedDiscountAmount = parseInt(newCoupon.discountAmount, 10);
         const parsedMinAmount = parseInt(newCoupon.minAmount, 10);
 
-        const response = await fetch('https://localhost:7001/api/Coupons', {
+        const response = await fetch('https://localhost:7009/Coupons', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

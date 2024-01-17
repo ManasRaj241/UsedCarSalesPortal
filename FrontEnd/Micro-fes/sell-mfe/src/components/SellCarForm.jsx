@@ -17,14 +17,14 @@ const SellCarForm = () => {
 
   useEffect(() => {
     Modal.setAppElement('#app');
-    fetch('https://localhost:7206/api/VehicleModels')
+    fetch('https://localhost:7009/VehicleModels')
       .then((response) => response.json())
       .then((data) => {
         const modelOptions = data.map((item) => item);
         setModels(modelOptions);
       });
 
-    fetch('https://localhost:7206/api/VehicleTypes')
+    fetch('https://localhost:7009/VehicleTypes')
       .then((response) => {
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);
@@ -58,7 +58,7 @@ const SellCarForm = () => {
 
     console.log(JSON.stringify(postData));
 
-    fetch('https://localhost:7206/api/Vehicles', {
+    fetch('https://localhost:7009/Vehicles', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

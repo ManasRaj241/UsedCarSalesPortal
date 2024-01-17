@@ -1,0 +1,262 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/Vehicles/FeaturedVehicles",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "FileCacheOptions": {
+        "TtlSeconds": 30,
+        "Region": "FeaturedVehicleCaching"
+      },
+      "UpstreamPathTemplate": "/FeaturedVehicles",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/VehicleModels",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/VehicleModels",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/VehicleTypes",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/VehicleTypes",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicles",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/Vehicles",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Vehicles/{vehicleId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/Vehicles/{vehicleId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/VehicleTypes/{vehicleTypeId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/VehicleTypes/{vehicleTypeId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/VehicleModels/{vehicleModelId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7206"
+        }
+      ],
+      "UpstreamPathTemplate": "/VehicleModels/{vehicleModelId}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/Cartupsert",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7114"
+        }
+      ],
+      "UpstreamPathTemplate": "/cart/Cartupsert",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/ApplyCoupon",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7114"
+        }
+      ],
+      "UpstreamPathTemplate": "/cart/ApplyCoupon",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/GetCart/{sub}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7114"
+        }
+      ],
+      "UpstreamPathTemplate": "/cart/GetCart/{sub}",
+      "UpstreamHttpMethod": [
+        "GET"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/RemoveCart",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7114"
+        }
+      ],
+      "UpstreamPathTemplate": "/cart/RemoveCart",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/cart/BuyVehicleRequest",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7114"
+        }
+      ],
+      "UpstreamPathTemplate": "/cart/BuyVehicleRequest",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/Login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Login",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/Register",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Register",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/auth/AssignRole",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7002"
+        }
+      ],
+      "UpstreamPathTemplate": "/Role",
+      "UpstreamHttpMethod": [
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Coupons",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Coupons",
+      "UpstreamHttpMethod": [
+        "GET",
+        "POST"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Coupons/{couponId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Coupons/{couponId}",
+      "UpstreamHttpMethod": [
+        "DELETE"
+      ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Coupons/{selectedCouponId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7001"
+        }
+      ],
+      "UpstreamPathTemplate": "/Coupons/{selectedCouponId}",
+      "UpstreamHttpMethod": [
+        "PUT"
+      ]
+    }
+  ]
+}
