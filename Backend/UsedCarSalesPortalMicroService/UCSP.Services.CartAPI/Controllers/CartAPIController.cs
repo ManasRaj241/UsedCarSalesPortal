@@ -38,11 +38,11 @@ namespace UCSP.Services.CartAPI.Controllers
 
 
         [HttpGet("GetCart/{userId}")]
-        public async Task<ResponseDto> GetCart(string userId)
+        public async Task<ResponseDto> GetCart(string userId, [FromHeader] string authorization)
         {
             try
             {
-                var headers = Request.Headers;
+                Request.Headers.Add("token", authorization);
                 CartDto cart = new()
                 {
                     CartHeader = _mapper.Map<CartHeaderDto>(_appDbContext.CartHeaders.First(u => u.UserId == userId)),
