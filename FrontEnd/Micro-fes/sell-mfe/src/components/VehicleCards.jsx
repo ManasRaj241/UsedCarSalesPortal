@@ -5,6 +5,7 @@ const VehicleCards = () => {
   const [vehicles, setVehicles] = useState([]);
   const [models, setModels] = useState([]);
   const [types, setTypes] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -36,10 +37,28 @@ const VehicleCards = () => {
     return type ? type.typeName : '';
   };
 
+  const filteredVehicles = vehicles.filter((vehicle) =>
+    vehicle.vehicleName.toLowerCase().includes(searchInput.toLowerCase())
+  );
+
   return (
     <div className="container mx-auto p-8">
+      <div className="flex-grow mx-9">
+        <input
+          type="text"
+          placeholder="Search..."
+          className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-orange-600"
+          value={searchInput}
+          onChange={(e) => setSearchInput(e.target.value)}
+        />
+        {searchInput && (
+          <p className="text-sm mt-2">
+            {filteredVehicles.length} items found with '{searchInput}'
+          </p>
+        )}
+      </div>
       <div className="flex flex-wrap -mx-4">
-        {vehicles.map((vehicle) => (
+        {filteredVehicles.map((vehicle) => (
           <div
             key={vehicle.vehicleId}
             className="w-full sm:w-1/2 md:w-1/4 lg:w-1/4 xl:w-1/4 p-4"

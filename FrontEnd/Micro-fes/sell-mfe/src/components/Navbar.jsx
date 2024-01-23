@@ -33,13 +33,13 @@ const Navbar = () => {
           <img src="/images/logo.png" alt="Logo" className="w-20 h-20" />
         </Link>
       </div>
-      <div className="flex-grow mx-9">
+      {/* <div className="flex-grow mx-9">
         <input
           type="text"
           placeholder="Search..."
           className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-orange-600"
         />
-      </div>
+      </div> */}
 
       <div className="flex items-center space-x-4">
         <Link to="/viewCars">
